@@ -12,7 +12,7 @@ public class Sorting02 {
         }
     }
 
-    public void bubbleSort() {
+    void bubbleSort() {
         int temp=0;
         for (int i=0; i < jumData-1; i++) {
             for (int j=1; j < jumData-i; j++) {
