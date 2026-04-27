@@ -14,7 +14,8 @@ public class MahasiswaDemo02 {
             System.out.println("2. Menilai Tugas");
             System.out.println("3. Melihat Tugas Teratas");
             System.out.println("4. Melihat Daftar Tugas");
-            System.out.println("0. Keluar"); 
+            System.out.println("5. Melihat Mahasiswa yang menggumpulkan tugas pertama kali");
+            System.out.println("6. Melihat Jumlah Tugas di Stack");
             System.out.print("Pilih: ");
             pilih = scan.nextInt();
             scan.nextLine(); // 
@@ -35,11 +36,13 @@ public class MahasiswaDemo02 {
                 case 2:
                     Mahasiswa dinilai = stack.pop();
                     if (dinilai != null) {
-                        System.out.print("Masukkan nilai untuk " + dinilai.nama + " (0-100): ");
+                        System.out.println("Menilai tugas dari " + dinilai.nama);
+                        System.out.print("Masukkan nilai (0-100): ");
                         int nilai = scan.nextInt();
-                        scan.nextLine(); 
-                        dinilai.tugasDinilai(nilai); 
-                        System.out.printf("Tugas %s adalah %d\n", dinilai.nama, nilai);
+                        dinilai.tugasDinilai(nilai);
+                        System.out.printf("Nilai Tugas %s adalah %d\n", dinilai.nama, nilai);
+                        String biner = stack.konversiDesimalKeBiner(nilai);
+                        System.out.printf("Nilai Biner Tugas: " + biner);
                     } 
                     break;
 
@@ -56,13 +59,20 @@ public class MahasiswaDemo02 {
                     stack.print();
                     break;
 
-                case 0:
-                    System.out.println("Keluar dari program...");
-                    break;
+                case 5:
+                    Mahasiswa bawah = stack.peekBottom();
+                        if (bawah != null){
+                            System.out.println("Mahasiswa pertama yang mengumpulkan: " + bawah.nama);
+                        }
+                        break;
+
+                case 6:
+                    System.out.println("Jumlah tugas di stack saat ini: " + stack.getJumlahTugas());
 
                 default:
                     System.out.println("Pilihan tidak valid.");
             }
-        } while (pilih >= 1 && pilih <=4); 
+            
+        } while (pilih >= 1 && pilih <=6); 
     }
 }
