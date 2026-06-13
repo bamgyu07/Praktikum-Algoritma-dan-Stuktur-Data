@@ -1,5 +1,7 @@
 package CM2;
 
+import percobaan.nodePesanan2;
+
 public class PesananDLL02 {
     NodePesanan02 head;
     NodePesanan02 tail;
@@ -45,13 +47,31 @@ public class PesananDLL02 {
 
         manualSortByNama();
 
-        System.out.printf("%-15s %-15s %-10s\n", "Kode Pesanan", "Nama Pesanan", "Harga"); 
+        System.out.printf("%-15s %-15s %-15s %-10s\n", "Kode Pesanan", "Nama Pesanan", "Jumlah Pesanan", "Harga"); 
 
         NodePesanan02 current = head;
         while (current != null){
-            System.out.printf("%-15d %-15s %-10d\n", 
-                current.data.kodePesanan, current.data.namaPesanan, current.data.harga);
+            System.out.printf("%-15d %-15s %-15s %-10d\n", 
+                current.data.kodePesanan, current.data.namaPesanan, current.data.jumlahPesanan, current.data.harga);
                 current = current.next;
         }
+    
     }
+    public int hitungTotalPendapatan() {
+        if (head == null) {
+            return 0;
+        }
+
+        int total = 0;
+        NodePesanan02 current = head;
+
+        while (current != null) {
+            total += current.data.harga;
+            current = current.next;
+        }
+
+        return total;
+    }
+
+    
 }

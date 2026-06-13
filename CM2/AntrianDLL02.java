@@ -1,9 +1,11 @@
 package CM2;
 
+import Jobsheet12.Node02;
+
 public class AntrianDLL02 {
     NodePembeli02 head;
     NodePembeli02 tail;
-    int noAntrian = 1;
+    int noAntrian;
 
     public AntrianDLL02() {
         this.head = null;
@@ -32,7 +34,6 @@ public class AntrianDLL02 {
             return;
         }
 
-        System.out.println("Daftar Antrian Pembeli: ");
         System.out.printf("%-12s %-15s %-15s\n", "No Antrian", "Nama Pembeli", "No HP");
         
         NodePembeli02 current = head;
@@ -61,5 +62,24 @@ public class AntrianDLL02 {
         return temp;
     }
 
+    public void hapusAntrian(int nomorHapus) {
+    if (head == null) {
+        System.out.println("Antrian kosong");
+        return;
+    }
 
+    NodePembeli02 current = head;
+
+    while (current != null &&
+           current.noAntrian != nomorHapus) {
+        current = current.next;
+    }
+    if (current == null) {
+
+        System.out.println("Nomor antrean tidak ditemukan");
+        return;
+    }
+
+    System.out.println("Antrian dihapus: " + nomorHapus);
+    }
 }

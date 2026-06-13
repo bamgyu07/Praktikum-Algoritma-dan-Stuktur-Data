@@ -1,17 +1,17 @@
-package CM2;
+package percobaan;
 
 import java.util.Scanner;
 
-public class RoyalDelishMain02 {
+public class Main02 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        AntrianDLL02 dll = new AntrianDLL02();
-        PesananDLL02 laporan = new PesananDLL02();
+        antrianDLL dll = new antrianDLL();
+        pesananDLL laporan = new pesananDLL();
 
         dll.tambahAntrian("Ainra", "08224500000");
         dll.tambahAntrian("Danra", "08224511111");
         dll.tambahAntrian("Sanri", "08224522222");
-        dll.tambahAntrian("Vania", "08422234556");
+        //dll.tambahAntrian("Vania", "08422234556")
         
         int pilihan;
 
@@ -23,6 +23,11 @@ public class RoyalDelishMain02 {
             System.out.println("2. Cetak Antrian");
             System.out.println("3. Hapus Antrian dan Pesanan");
             System.out.println("4. Laporan Pesanan");
+            //System.out.println("5. Hitung total antrian");
+            //System.out.println("6. Catak secara terbalik");
+            //System.out.println("7. Hitung total pendapatan");
+            //System.out.println("8. Laporan Bedasarkan harga");
+            System.out.println("9. Masukkan Antrian Setelah");
             System.out.println("0. Keluar");
             System.out.print("Pilih menu: ");
             pilihan = sc.nextInt();
@@ -34,7 +39,7 @@ public class RoyalDelishMain02 {
                     String namaPembeli = sc.nextLine();
                     System.out.print("No HP \t\t: ");
                     String noHp = sc.nextLine();
-                    Pembeli pembeliBaru = new Pembeli(namaPembeli, noHp);
+                    pembeli newPembeli = new pembeli(namaPembeli, noHp);
                     dll.tambahAntrian(namaPembeli, noHp);
                     break;
                 
@@ -46,8 +51,8 @@ public class RoyalDelishMain02 {
                     break;
 
                 case 3:
-                    NodePembeli02 tampil = dll.hapusAntrian();
-                    if (tampil == null){
+                    nodePembeli2 panggil = dll.hapusAntrian();
+                    if (panggil == null){
                         System.out.println("Tidak ada antrian");
                     } else {
                         System.out.print("Kode pesanan \t: ");
@@ -57,17 +62,14 @@ public class RoyalDelishMain02 {
                         System.out.print("Nama Pesanan \t: ");
                         String menuPesanan = sc.nextLine();
 
-                        System.out.print("Jumlah Pesanan \t: ");
-                        int jumlahPesanan = sc.nextInt();
-
                         System.out.print("Harga \t\t: ");
                         int harga = sc.nextInt();
                         sc.nextLine();
 
-                        Pesanan pesananBaru = new Pesanan(kodePesanan, menuPesanan, harga, jumlahPesanan);
+                        pesanan pesananBaru = new pesanan(kodePesanan, menuPesanan, harga);
                         laporan.tambahPesanan(pesananBaru);
 
-                        System.out.println(tampil.data.namaPembeli + " telah memesan " + menuPesanan + " dengan harga " + (jumlahPesanan * harga));
+                        System.out.println(panggil.data.namaPembeli + " telah memesan " + menuPesanan + " dengan harga " + harga);
                     }
                     break;
 
@@ -77,6 +79,32 @@ public class RoyalDelishMain02 {
                     System.out.println("================================");
                     laporan.cetakLaporanPesanan();
                     break;
+
+                //case 5:
+                    //System.out.println("===========================");
+                    //System.out.println("Total antrian sekarang adalah " + dll.jumlahAntrian());
+
+                //case 6:
+                    //System.out.println("================================");
+                    //System.out.println("Daftar Antrian Pembeli");
+                    //System.out.println("================================");
+                    //dll.printReverse();
+                    //break;
+                
+                //case 7:
+                    //System.out.println("Total Pendapatan");
+                    //System.out.println("===============================");
+                    //System.out.println("Total Pendapatan : Rp "+ laporan.hitungTotalPendapatan());
+                    //break;
+                
+                //case 8:
+                    //System.out.println("================================");
+                    //System.out.println("Laporan Pesanan (urutan bedasarkan harga)");
+                    //System.out.println("================================");
+                    //laporan.catakLaporanHarga();
+                    //break;
+
+                case 9:
 
                 case 0:
                     System.out.println("Terima kasih telah menggunakan sistem antrian Royal Delish!");
